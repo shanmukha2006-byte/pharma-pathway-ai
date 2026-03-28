@@ -2,95 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 240 20% 4%;
+    --foreground: 213 31% 95%;
+    --card: 240 25% 8%;
+    --card-foreground: 213 31% 95%;
+    --popover: 240 25% 8%;
+    --popover-foreground: 213 31% 95%;
+    --primary: 263 70% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 174 43% 31%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 217 19% 35%;
+    --muted-foreground: 215 16% 62%;
+    --accent: 263 70% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 100% / 0.08;
+    --input: 0 0% 100% / 0.12;
+    --ring: 263 70% 55%;
+    --radius: 0.75rem;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --page-bg: #0a0a0f;
+    --card-bg: #0f0f1a;
+    --sidebar-bg: #13131f;
+    --purple: #7c3aed;
+    --purple-light: #a855f7;
+    --teal: #0d9488;
+    --teal-light: #14b8a6;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #475569;
+    --border-subtle: rgba(255,255,255,0.08);
+    --border-input: rgba(255,255,255,0.12);
+    --input-bg: rgba(255,255,255,0.04);
+    --glass-bg: rgba(255,255,255,0.04);
+    --glass-border: rgba(255,255,255,0.08);
   }
 }
 
@@ -100,6 +49,167 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    background: var(--page-bg);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: all 200ms;
+  }
+  .btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border-input);
+    color: var(--text-primary);
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: all 200ms;
+  }
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.04);
+  }
+
+  .btn-danger {
+    background: rgba(239,68,68,0.15);
+    border: 1px solid rgba(239,68,68,0.3);
+    color: #f87171;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 500;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: all 200ms;
+  }
+  .btn-ghost:hover {
+    background: rgba(255,255,255,0.04);
+    color: var(--text-primary);
+  }
+
+  .input-field {
+    background: var(--input-bg);
+    border: 1px solid var(--border-input);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+    transition: border-color 200ms;
+  }
+  .input-field::placeholder {
+    color: var(--text-muted);
+  }
+  .input-field:focus {
+    outline: none;
+    border-color: #7c3aed;
+  }
+
+  .badge-success {
+    background: rgba(13,148,136,0.15);
+    color: #14b8a6;
+    border: 1px solid rgba(13,148,136,0.3);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+  }
+  .badge-error {
+    background: rgba(239,68,68,0.15);
+    color: #f87171;
+    border: 1px solid rgba(239,68,68,0.3);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+  }
+  .badge-warning {
+    background: rgba(245,158,11,0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(245,158,11,0.3);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+  }
+  .badge-info {
+    background: rgba(124,58,237,0.15);
+    color: #a855f7;
+    border: 1px solid rgba(124,58,237,0.3);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+  }
+  .badge-gray {
+    background: rgba(255,255,255,0.06);
+    color: var(--text-secondary);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+  }
+
+  .skeleton-pulse {
+    background: rgba(255,255,255,0.06);
+    border-radius: 8px;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }
