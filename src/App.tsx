@@ -21,13 +21,15 @@ export default function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/molecules" element={<MoleculeExplorer />} />
-              <Route path="/pathways" element={<PathwayList />} />
-              <Route path="/pathways/new" element={<PathwayBuilder />} />
-              <Route path="/retrosynthesis" element={<RetrosynthesisLogPage />} />
-              <Route path="/pricing" element={<IndicationPricingPage />} />
+            <Route element={<ProtectedRoute />}>
+              <Route element={<Layout />}>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/molecules" element={<MoleculeExplorer />} />
+                <Route path="/pathways" element={<PathwayList />} />
+                <Route path="/pathways/new" element={<PathwayBuilder />} />
+                <Route path="/retrosynthesis" element={<RetrosynthesisLogPage />} />
+                <Route path="/pricing" element={<IndicationPricingPage />} />
+              </Route>
             </Route>
           </Routes>
         </BrowserRouter>
