@@ -1,0 +1,5 @@
+[phases.install]
+cmds = ["pip install fastapi uvicorn python-dotenv supabase==2.4.6 httpx pydantic python-multipart requests openai reportlab"]
+
+[start]
+cmd = "uvicorn main:app --host 0.0.0.0 --port $PORT"
