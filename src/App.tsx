@@ -12,6 +12,10 @@ import PathwayBuilder from '@/pages/PathwayBuilder';
 import PathwayList from '@/pages/PathwayList';
 import RetrosynthesisLogPage from '@/pages/RetrosynthesisLog';
 import IndicationPricingPage from '@/pages/IndicationPricing';
+import ADMETPage from '@/pages/ADMETPage';
+import AIRetrosynthesisPage from '@/pages/AIRetrosynthesisPage';
+import InteractionCheckerPage from '@/pages/InteractionCheckerPage';
+import AnalyticsDashboard from '@/pages/AnalyticsDashboard';
 
 export default function App() {
   return (
@@ -19,16 +23,26 @@ export default function App() {
       <ToastProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/login" element={<Login />} />
+            {/* Public routes */}
+            <Route path="/login"    element={<Login />} />
             <Route path="/register" element={<Register />} />
+
+            {/* Protected routes */}
             <Route element={<ProtectedRoute />}>
               <Route element={<Layout />}>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/molecules" element={<MoleculeExplorer />} />
-                <Route path="/pathways" element={<PathwayList />} />
-                <Route path="/pathways/new" element={<PathwayBuilder />} />
+                {/* Core pages */}
+                <Route path="/"               element={<Dashboard />} />
+                <Route path="/molecules"      element={<MoleculeExplorer />} />
+                <Route path="/pathways"       element={<PathwayList />} />
+                <Route path="/pathways/new"   element={<PathwayBuilder />} />
                 <Route path="/retrosynthesis" element={<RetrosynthesisLogPage />} />
-                <Route path="/pricing" element={<IndicationPricingPage />} />
+                <Route path="/pricing"        element={<IndicationPricingPage />} />
+
+                {/* AI Feature pages */}
+                <Route path="/ai-retrosynthesis" element={<AIRetrosynthesisPage />} />
+                <Route path="/admet"             element={<ADMETPage />} />
+                <Route path="/interactions"      element={<InteractionCheckerPage />} />
+                <Route path="/analytics" element={<AnalyticsDashboard />} />
               </Route>
             </Route>
           </Routes>
