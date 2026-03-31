@@ -14,6 +14,8 @@ app.add_middleware(
     allow_origins=[
     "http://localhost:5173",
     "http://localhost:8080",
+    "http://192.168.1.7:8080",
+    "http://192.168.1.7:5173",
     "https://prpois-project.web.app",
     "https://prpois-project.firebaseapp.com"
 ],
