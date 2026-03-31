@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ShieldAlert, Plus, Trash2, AlertTriangle, CheckCircle, XCircle } from "lucide-react";
 import axios from "axios";
 
-const API = "http://localhost:8000/api";
+const API = "https://pharma-pathway-ai-production.up.railway.app/api";
 
 interface Interaction {
   type: string;

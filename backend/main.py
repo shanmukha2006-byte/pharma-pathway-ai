@@ -12,11 +12,11 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5173",
-        "http://localhost:8080",
-        "http://192.168.1.7:8080",
-        "http://192.168.1.7:5173"
-    ],
+    "http://localhost:5173",
+    "http://localhost:8080",
+    "https://prpois-project.web.app",
+    "https://prpois-project.firebaseapp.com"
+],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

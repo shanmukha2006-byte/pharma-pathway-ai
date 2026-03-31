@@ -4,7 +4,7 @@ import { Activity, AlertTriangle, CheckCircle, XCircle, FlaskConical } from "luc
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer, Tooltip } from "recharts";
 import axios from "axios";
 
-const API = "http://localhost:8000/api";
+const API = "https://pharma-pathway-ai-production.up.railway.app/api";
 
 interface ADMETData {
   absorption: { score: number; oral_bioavailability: string; caco2_permeability: string; pgp_substrate: string; hia: number };

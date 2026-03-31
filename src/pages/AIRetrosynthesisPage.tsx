@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Brain, ChevronDown, ChevronUp, AlertTriangle, CheckCircle, Zap, Download } from "lucide-react";
 import axios from "axios";
 
-const API = "http://localhost:8000/api";
+const API = "https://pharma-pathway-ai-production.up.railway.app/api";
 
 interface RetroStep {
   step_number: number;

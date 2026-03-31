@@ -14,7 +14,7 @@ export default function PDFReportButton({ pathwayId, variant = 'button', classNa
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:8000/api/reports/pathway/${pathwayId}`,
+        `https://pharma-pathway-ai-production.up.railway.app/api/reports/pathway/${pathwayId}`,
         { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ pathway_id: pathwayId, include_admet: true, include_retrosynthesis: true, include_pricing: true }) }
       );
 
