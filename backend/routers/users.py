@@ -1,44 +1,45 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
+from typing import Optional
 from supabase_client import supabase
 
 router = APIRouter()
 
-class UserSync(BaseModel):
+class UserSyncInput(BaseModel):
     firebase_uid: str
     email: str
-    role: str = "RESEARCHER"
-    full_name: str = ""
-    institution: str = ""
+    display_name: Optional[str] = ""
+    role: Optional[str] = "RESEARCHER"
 
 @router.post("/sync")
-def sync_user(data: UserSync):
+def sync_user(data: UserSyncInput):
     try:
-        existing = supabase.table("users").select("*").eq("email", data.email).execute()
+        existing = supabase.table("app_user").select("*").eq("firebase_uid", data.firebase_uid).execute()
         if existing.data:
-            user = existing.data[0]
-            profile = supabase.table("user_profile").select("*").eq("user_id", user["user_id"]).execute()
-            return {"user": user, "profile": profile.data[0] if profile.data else None}
-
-        new_user = supabase.table("users").insert({
-            "email": data.email,
-            "role": data.role.upper(),
-            "is_active": True
-        }).execute()
-
-        user = new_user.data[0]
-
-        new_profile = supabase.table("user_profile").insert({
-            "user_id": user["user_id"],
-            "full_name": data.full_name,
-            "institution": data.institution,
-            "credential_level": data.role
-        }).execute()
-
-        return {"user": user, "profile": new_profile.data[0]}
+            updated = supabase.table("app_user").update({
+                "email": data.email,
+                "display_name": data.display_name,
+            }).eq("firebase_uid", data.firebase_uid).execute()
+            return updated.data[0]
+        else:
+            inserted = supabase.table("app_user").insert({
+                "firebase_uid": data.firebase_uid,
+                "email": data.email,
+                "display_name": data.display_name,
+                "role": data.role,
+            }).execute()
+            return inserted.data[0]
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/me")
-def get_me():
-    return {"message": "Use /sync endpoint"}
+def get_user(firebase_uid: str):
+    try:
+        result = supabase.table("app_user").select("*").eq("firebase_uid", firebase_uid).execute()
+        if not result.data:
+            raise HTTPException(status_code=404, detail="User not found")
+        return result.data[0]
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
